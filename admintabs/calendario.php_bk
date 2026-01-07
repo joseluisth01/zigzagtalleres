@@ -1,0 +1,94 @@
+<?php
+if (!isset($dbConnection)) {
+    $db_host = $_POST['db_host'];
+    $db_user = $_POST['db_user'];
+    $db_password = $_POST['db_password'];
+    $db_name = $_POST['db_name'];
+    $dbConnection = new mysqli($db_host, $db_user, $db_password, $db_name);
+    $dbConnection->set_charset("utf8");
+}
+$query = "
+SELECT
+    Taller.Nombre AS NombreTaller,
+    Usuario.Nombre AS NombreProfesor,
+    Horario.DiaSemana,
+    Horario.HoraInicio,
+    Horario.HoraFin
+FROM
+    Horario
+JOIN Taller ON Horario.TallerID = Taller.TallerID
+JOIN Usuario ON Taller.IDProfesor = Usuario.UsuarioID
+ORDER BY
+    FIELD(Horario.DiaSemana, 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo');
+    ";
+$result = mysqli_query($dbConnection, $query);
+$inscripciones = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$dia_actual = ucfirst(strftime('%A'));
+
+// Función de comparación para ordenar el array
+function compararFechas($a, $b)
+{
+    global $dia_actual;
+
+    // Array de días de la semana en español
+    $dias_semana = array(
+        "Domingo" => 0,
+        "Lunes" => 1,
+        "Martes" => 2,
+        "Miércoles" => 3,
+        "Jueves" => 4,
+        "Viernes" => 5,
+        "Sábado" => 6,
+    );
+
+    // Obtener el índice del día actual en el array de días de la semana
+    $indice_dia_actual = $dias_semana[$dia_actual];
+
+    // Obtener el índice del día de cada taller en el array de días de la semana
+    $indice_dia_a = $dias_semana[$a['DiaSemana']];
+    $indice_dia_b = $dias_semana[$b['DiaSemana']];
+
+    // Calcular la diferencia en días desde el día actual
+    $diferencia_dias_a = ($indice_dia_a - $indice_dia_actual + 7) % 7;
+    $diferencia_dias_b = ($indice_dia_b - $indice_dia_actual + 7) % 7;
+
+    // Comparar por la proximidad al día actual
+    if ($diferencia_dias_a == $diferencia_dias_b) {
+        // Si la diferencia en días es la misma, comparar por la hora de inicio
+        return strtotime($a['HoraInicio']) - strtotime($b['HoraInicio']);
+    }
+
+    return $diferencia_dias_a - $diferencia_dias_b;
+}
+
+// Ordenar el array utilizando la función de comparación
+usort($inscripciones, 'compararFechas');
+?>
+<table id="calendario_global" class="table">
+    <thead>
+        <tr>
+            <th>Taller</th>
+            <th>Profesora</th>
+            <th>Día</th>
+            <th>Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($inscripciones as $inscripcion) : ?>
+            <tr>
+                <td><?= $inscripcion['NombreTaller'] ?></td>
+                <td><?= $inscripcion['NombreProfesor'] ?></td>
+                <td><?= $inscripcion['DiaSemana'] ?></td>
+                <td><?= date('H:i', strtotime($inscripcion['HoraInicio'])) ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+<script>
+    var calendario_global = new DataTable('#calendario_global', {
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                },
+            });
+</script>

@@ -1,0 +1,143 @@
+$primary: #73cdc8
+$secondary: #7980c2
+
+a
+    text-decoration: none
+
+.admin-panel
+    section
+        display: none
+        &.active
+            display: block
+#sidebar
+    background: #73cdc8
+    a
+        color: #FFFFFF
+        text-transform: uppercase
+        letter-spacing: 0.5px
+
+h1,h2,h3,h4,h5
+    margin-bottom: 25px
+    font-size: 25px
+    font-weight: 35px
+    font-weight: bold
+    color: $secondary
+
+.logozig
+    width: 100%
+    max-width: 250px
+    object-fit: contain
+
+.cerrar-sesion a
+    text-decoration: none
+    color: $secondary
+
+#tabla_personal
+    th
+        vertical-align: middle
+
+
+#calendario
+    height: 100%
+
+.evento-inscrito
+    background: #7980c2
+    cursor: pointer
+    padding: 3px 10px
+    color: #FFFFFF
+.evento-no-inscrito
+    background: lightgreen
+    cursor: pointer
+    padding: 3px 10px
+    color: #FFFFFF
+
+div.evento
+    padding: 10px 20px
+    background: #7980c260
+    border-left: 5px solid #7980c2
+    color: #000000
+    margin-top: 15px
+    border-radius: 20px
+    display: flex
+    flex-wrap: wrap
+    font-weight: 500
+    position: relative
+    span
+        width: 100%
+        margin-bottom: 3px
+    .plazas
+        position: absolute
+        top: 10px
+        right: 10px
+        display: inline-flex
+        width: auto
+.evento
+    color: #000000
+    cursor: pointer
+.fc-event.evento
+    padding: 3px 10px
+    font-weight: 500
+    white-space: wrap
+.evento.inscrito
+    background: #7980c260
+    border-left: 5px solid #7980c2
+.evento.disponible
+    background: #73cd7640
+    border-left: 5px solid #73cd76
+.evento.block
+    background: #FF000040
+    border-left: 5px solid #FF0000
+
+.msg-saldo
+    font-size: 20px
+    line-height: normal
+    font-weight: 500
+
+#panel-usuario
+    #listado-eventos
+        .evento:not(.inscrito)
+            display: none
+    .fc-content
+        -ms-overflow-style: none
+        scrollbar-width: none
+        &::-webkit-scrollbar
+            display: none
+
+.login.container
+    width: 100%
+    max-width: 600px
+    margin: 0 auto
+    font-weight: 500
+    .logozig
+        width: 100%
+        max-width: 300px
+        object-fit: contain
+    form
+        background: #73cdc8
+        padding: 20px
+        border-radius: 10px
+
+#calendario_eventos,#calendario_personal
+    a:not(.fc-event)
+        color: #7980c2
+
+.fc-content
+    overflow-x: scroll
+@media (max-width: 768px)
+    .fc .fc-toolbar-title
+        font-size: 16px
+    .fc-event.evento
+        padding: 3px 2px
+
+#normasPopup
+    .modal-dialog
+        width: 95%
+        max-width: 1000px
+        margin-left: auto
+        margin-right: auto
+    ul
+        li
+            margin-bottom: 15px
+body
+    .tox:not(.tox-tinymce)
+        display: none !important
