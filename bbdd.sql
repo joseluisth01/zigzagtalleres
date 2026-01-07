@@ -1,3 +1,63 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: localhost:3306
+-- Tiempo de generación: 07-01-2026 a las 17:14:14
+-- Versión del servidor: 11.4.9-MariaDB-cll-lve
+-- Versión de PHP: 8.4.16
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `zigzag_talleres`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `admin`
+--
+
+CREATE TABLE `admin` (
+  `IDNormas` int(11) NOT NULL,
+  `Normas` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `admin`
+--
+
+INSERT INTO `admin` (`IDNormas`, `Normas`) VALUES
+(1, '<ul>\n<li>El pago de la mensualidad se har&aacute; en los 7 primeros d&iacute;as de cada mes si no el alumno/a quedar&aacute; desactivado/a en la aplicaci&oacute;n para poder recuperar clases perdidas.</li>\n<li>En&nbsp;caso de que la profesora no pudiera asistir a clase se habilitar&aacute; otro d&iacute;a para recuperar dicha clase.</li>\n<li>En caso de que una alumna no pudiera asistir a una clase, podr&aacute; realizar un cambio de turno siempre que anule su asistencia a clase con anterioridad a 1 h de su clase.</li>\n<li>Las recuperaciones se podr&aacute;n realizar&nbsp;<span style=\"text-decoration: underline;\">siempre que haya plazas libres.</span></li>\n</ul>');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cancelaciones`
+--
+
+CREATE TABLE `cancelaciones` (
+  `IDCancelacion` int(11) NOT NULL,
+  `HorarioID` int(11) NOT NULL,
+  `UsuarioID` int(11) NOT NULL,
+  `Fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `fechas`
+--
+
 CREATE TABLE `fechas` (
   `IDFecha` int(11) NOT NULL,
   `HorarioID` int(11) NOT NULL,
@@ -5227,3 +5287,395 @@ INSERT INTO `horario` (`HorarioID`, `TallerID`, `HoraInicio`, `HoraFin`, `DiaSem
 (228, 45, '11:30:00', '13:30:00', 'Viernes', 6),
 (229, 45, '17:30:00', '19:30:00', 'Viernes', 6),
 (253, 47, '11:30:00', '13:30:00', 'Jueves', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `inscripcion`
+--
+
+CREATE TABLE `inscripcion` (
+  `InscripcionID` int(11) NOT NULL,
+  `UsuarioID` int(11) NOT NULL,
+  `TallerID` int(11) NOT NULL,
+  `HorarioID` int(11) NOT NULL,
+  `FechaID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `inscripcion`
+--
+
+INSERT INTO `inscripcion` (`InscripcionID`, `UsuarioID`, `TallerID`, `HorarioID`, `FechaID`) VALUES
+(1, 926, 44, 186, 4445),
+(2, 926, 44, 186, 4446),
+(3, 926, 44, 186, 4447),
+(4, 926, 44, 186, 4448),
+(22119, 1018, 45, 204, 5442),
+(22120, 1018, 45, 204, 8989),
+(22121, 1018, 45, 204, 9023),
+(22122, 1018, 45, 204, 9065),
+(22123, 1018, 45, 204, 9107),
+(22124, 1018, 45, 204, 9149),
+(22125, 1018, 46, 209, 5651),
+(22126, 1018, 46, 209, 5652),
+(22127, 1018, 46, 209, 5653),
+(22128, 1018, 46, 209, 5654),
+(22129, 1018, 46, 209, 5655),
+(22130, 1018, 46, 209, 5656),
+(22131, 1018, 46, 209, 5657),
+(22132, 1018, 46, 209, 5658),
+(22133, 1018, 46, 209, 5659),
+(22134, 1018, 46, 209, 5660),
+(22135, 1018, 46, 209, 5661),
+(22136, 1018, 46, 209, 5662),
+(22137, 1018, 46, 209, 5663),
+(22138, 1018, 46, 209, 5664),
+(22139, 1018, 46, 209, 5665),
+(22140, 1018, 46, 209, 5666),
+(22141, 1018, 46, 209, 5667),
+(22142, 1018, 46, 209, 5668),
+(22143, 1018, 46, 209, 5669),
+(22144, 1018, 46, 209, 5670),
+(22145, 1018, 46, 209, 5671),
+(22146, 1018, 46, 209, 5672),
+(22147, 1018, 46, 209, 5673),
+(22148, 1018, 46, 209, 5674),
+(22149, 1018, 46, 209, 5675),
+(22150, 1018, 46, 209, 5676),
+(22151, 1018, 46, 209, 5677),
+(22152, 1018, 46, 209, 5678),
+(22153, 1018, 46, 209, 5679),
+(22154, 1018, 46, 209, 5680),
+(22155, 1018, 46, 209, 5681),
+(22156, 1018, 46, 209, 5682),
+(22157, 1018, 46, 209, 5683),
+(22158, 1018, 46, 209, 5684),
+(22159, 1018, 46, 209, 5685),
+(22160, 1018, 46, 209, 5686),
+(22161, 1018, 46, 209, 5687),
+(22162, 1018, 46, 209, 5688),
+(22163, 1018, 46, 209, 5689),
+(22164, 1018, 46, 209, 5690),
+(22165, 1018, 46, 209, 5691),
+(22166, 1018, 46, 209, 5692),
+(22167, 1018, 46, 209, 5693),
+(22168, 1018, 46, 209, 5694),
+(22169, 1018, 46, 209, 5695),
+(22170, 1018, 46, 209, 5696),
+(22171, 1018, 46, 209, 5697),
+(22172, 1018, 46, 209, 5698),
+(22173, 1018, 46, 209, 5699),
+(22174, 1018, 46, 209, 5700),
+(22175, 1018, 46, 209, 5701),
+(22176, 1018, 46, 209, 5702),
+(22177, 1018, 46, 209, 9032),
+(22178, 1018, 46, 209, 9074),
+(22179, 1018, 46, 209, 9116),
+(22180, 1018, 46, 209, 9158);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `taller`
+--
+
+CREATE TABLE `taller` (
+  `TallerID` int(11) NOT NULL,
+  `Nombre` varchar(100) NOT NULL,
+  `IDProfesor` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `taller`
+--
+
+INSERT INTO `taller` (`TallerID`, `Nombre`, `IDProfesor`) VALUES
+(44, 'Patchwork', 219),
+(45, 'Costura Creativa', 220),
+(46, 'Punto y crochet', 222),
+(47, 'Patronaje y Costura', 221);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `temporales`
+--
+
+CREATE TABLE `temporales` (
+  `IDTemporal` int(11) NOT NULL,
+  `Usuario` int(11) NOT NULL,
+  `HorarioAntiguo` int(11) DEFAULT NULL,
+  `HorarioNuevo` int(11) NOT NULL,
+  `Fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipousuario`
+--
+
+CREATE TABLE `tipousuario` (
+  `TipoUsuarioID` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tipousuario`
+--
+
+INSERT INTO `tipousuario` (`TipoUsuarioID`, `Nombre`) VALUES
+(1, 'Administrador'),
+(2, 'Alumno'),
+(3, 'Profesor');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `UsuarioID` int(11) NOT NULL,
+  `Nombre` varchar(100) NOT NULL,
+  `TipoUsuarioID` int(11) NOT NULL,
+  `Activo` bit(1) NOT NULL DEFAULT b'1',
+  `Contrasena` varchar(100) NOT NULL,
+  `Telefono` varchar(20) DEFAULT NULL,
+  `CodigoPostal` varchar(10) DEFAULT NULL,
+  `DNI` varchar(100) NOT NULL,
+  `Saldo` int(11) NOT NULL DEFAULT 0,
+  `Foto` longtext NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`UsuarioID`, `Nombre`, `TipoUsuarioID`, `Activo`, `Contrasena`, `Telefono`, `CodigoPostal`, `DNI`, `Saldo`, `Foto`) VALUES
+(8, 'zigzag', 1, b'1', '36b35d94485d74995b497ad674fb982a', '957 08 31 73', '14006', '12345678Z', 0, ''),
+(9, 'vojeda', 2, b'1', 'bf165c1eb09167a8b83753fddae81f68', '666000000', '14014', '22222222V', 0, '9.jpg'),
+(219, 'Profesora Sara', 3, b'1', '9c0b608a168fd215e933b7e938b1b041', '664315290', '14014', '664315290', 0, ''),
+(220, 'Profesora Natalia', 3, b'1', 'e6c2dc3dee4a51dcec3a876aa2339a78', '677021048', '14012', '677021048', 0, ''),
+(221, 'Profesora Andrea', 3, b'1', '2557aac529d7bfaf6dd94c5ccc84f28f', '662258473', '14014', '662258473', 0, '221.webp'),
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_backup_20250602`
+--
+
+CREATE TABLE `usuario_backup_20250602` (
+  `UsuarioID` int(11) NOT NULL DEFAULT 0,
+  `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TipoUsuarioID` int(11) NOT NULL,
+  `Activo` bit(1) NOT NULL DEFAULT b'1',
+  `Contrasena` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Telefono` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `CodigoPostal` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `DNI` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Saldo` int(11) NOT NULL DEFAULT 0,
+  `Foto` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario_backup_20250602`
+--
+
+INSERT INTO `usuario_backup_20250602` (`UsuarioID`, `Nombre`, `TipoUsuarioID`, `Activo`, `Contrasena`, `Telefono`, `CodigoPostal`, `DNI`, `Saldo`, `Foto`) VALUES
+(8, 'zigzag', 1, b'1', '36b35d94485d74995b497ad674fb982a', '957 08 31 73', '14006', '12345678Z', 0, ''),
+(9, 'vojeda', 2, b'1', 'bf165c1eb09167a8b83753fddae81f68', '666000000', '14014', '22222222V', 0, '9.jpg'),
+(219, 'Profesora Sara', 3, b'1', '9c0b608a168fd215e933b7e938b1b041', '664315290', '14014', '664315290', 0, ''),
+(220, 'Profesora Natalia', 3, b'1', 'e6c2dc3dee4a51dcec3a876aa2339a78', '677021048', '14012', '677021048', 0, ''),
+(221, 'Profesora Andrea', 3, b'1', '2557aac529d7bfaf6dd94c5ccc84f28f', '662258473', '14014', '662258473', 0, '221.webp'),
+(222, 'Profesora Inma', 3, b'1', '8d6732a12d0884144309b17db65f0109', '639358184', '14012', '639358184', 0, ''),
+(223, 'Nieves', 2, b'0', '7065fee061fa027933af6c09da1103b7', '666666666', '14000', '123456', 0, ''),
+(224, 'Usuario de prueba', 2, b'0', 'd45e977bfef260da159d651b9de7035d', '666666666', '14007', '11111111A', 0, ''),
+(661, 'Isabel Abad', 2, b'0', 'd45e977bfef260da159d651b9de7035d', '699482389', '14011', '30999152', 0, ''),
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`IDNormas`);
+
+--
+-- Indices de la tabla `cancelaciones`
+--
+ALTER TABLE `cancelaciones`
+  ADD PRIMARY KEY (`IDCancelacion`),
+  ADD KEY `HorarioID` (`HorarioID`),
+  ADD KEY `FK_Cancelaciones_Usuario` (`UsuarioID`);
+
+--
+-- Indices de la tabla `fechas`
+--
+ALTER TABLE `fechas`
+  ADD PRIMARY KEY (`IDFecha`),
+  ADD KEY `HorarioID` (`HorarioID`);
+
+--
+-- Indices de la tabla `festivos`
+--
+ALTER TABLE `festivos`
+  ADD PRIMARY KEY (`FestivoID`);
+
+--
+-- Indices de la tabla `horario`
+--
+ALTER TABLE `horario`
+  ADD PRIMARY KEY (`HorarioID`),
+  ADD KEY `TallerID` (`TallerID`);
+
+--
+-- Indices de la tabla `inscripcion`
+--
+ALTER TABLE `inscripcion`
+  ADD PRIMARY KEY (`InscripcionID`),
+  ADD KEY `TallerID` (`TallerID`),
+  ADD KEY `HorarioID` (`HorarioID`),
+  ADD KEY `Inscripcion_ibfk_1` (`UsuarioID`),
+  ADD KEY `FK_Inscripcion_Fecha` (`FechaID`);
+
+--
+-- Indices de la tabla `taller`
+--
+ALTER TABLE `taller`
+  ADD PRIMARY KEY (`TallerID`),
+  ADD KEY `FK_Taller_Usuario` (`IDProfesor`);
+
+--
+-- Indices de la tabla `temporales`
+--
+ALTER TABLE `temporales`
+  ADD PRIMARY KEY (`IDTemporal`),
+  ADD KEY `Usuario` (`Usuario`),
+  ADD KEY `HorarioAntiguo` (`HorarioAntiguo`),
+  ADD KEY `HorarioNuevo` (`HorarioNuevo`);
+
+--
+-- Indices de la tabla `tipousuario`
+--
+ALTER TABLE `tipousuario`
+  ADD PRIMARY KEY (`TipoUsuarioID`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`UsuarioID`),
+  ADD KEY `TipoUsuarioID` (`TipoUsuarioID`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `IDNormas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `cancelaciones`
+--
+ALTER TABLE `cancelaciones`
+  MODIFY `IDCancelacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `fechas`
+--
+ALTER TABLE `fechas`
+  MODIFY `IDFecha` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9333;
+
+--
+-- AUTO_INCREMENT de la tabla `festivos`
+--
+ALTER TABLE `festivos`
+  MODIFY `FestivoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT de la tabla `horario`
+--
+ALTER TABLE `horario`
+  MODIFY `HorarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=269;
+
+--
+-- AUTO_INCREMENT de la tabla `inscripcion`
+--
+ALTER TABLE `inscripcion`
+  MODIFY `InscripcionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22286;
+
+--
+-- AUTO_INCREMENT de la tabla `taller`
+--
+ALTER TABLE `taller`
+  MODIFY `TallerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT de la tabla `temporales`
+--
+ALTER TABLE `temporales`
+  MODIFY `IDTemporal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `UsuarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1106;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `cancelaciones`
+--
+ALTER TABLE `cancelaciones`
+  ADD CONSTRAINT `FK_Cancelaciones_Horario` FOREIGN KEY (`HorarioID`) REFERENCES `horario` (`HorarioID`),
+  ADD CONSTRAINT `FK_Cancelaciones_Usuario` FOREIGN KEY (`UsuarioID`) REFERENCES `usuario` (`UsuarioID`);
+
+--
+-- Filtros para la tabla `fechas`
+--
+ALTER TABLE `fechas`
+  ADD CONSTRAINT `fechas_ibfk_1` FOREIGN KEY (`HorarioID`) REFERENCES `horario` (`HorarioID`);
+
+--
+-- Filtros para la tabla `inscripcion`
+--
+ALTER TABLE `inscripcion`
+  ADD CONSTRAINT `FK_Inscripcion_Fecha` FOREIGN KEY (`FechaID`) REFERENCES `fechas` (`IDFecha`),
+  ADD CONSTRAINT `Inscripcion_ibfk_1` FOREIGN KEY (`UsuarioID`) REFERENCES `usuario` (`UsuarioID`),
+  ADD CONSTRAINT `Inscripcion_ibfk_2` FOREIGN KEY (`TallerID`) REFERENCES `taller` (`TallerID`),
+  ADD CONSTRAINT `Inscripcion_ibfk_3` FOREIGN KEY (`HorarioID`) REFERENCES `horario` (`HorarioID`);
+
+--
+-- Filtros para la tabla `taller`
+--
+ALTER TABLE `taller`
+  ADD CONSTRAINT `FK_Taller_Usuario` FOREIGN KEY (`IDProfesor`) REFERENCES `usuario` (`UsuarioID`);
+
+--
+-- Filtros para la tabla `temporales`
+--
+ALTER TABLE `temporales`
+  ADD CONSTRAINT `Temporales_ibfk_1` FOREIGN KEY (`Usuario`) REFERENCES `usuario` (`UsuarioID`),
+  ADD CONSTRAINT `Temporales_ibfk_2` FOREIGN KEY (`HorarioAntiguo`) REFERENCES `horario` (`HorarioID`),
+  ADD CONSTRAINT `Temporales_ibfk_3` FOREIGN KEY (`HorarioNuevo`) REFERENCES `horario` (`HorarioID`);
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `Usuario_ibfk_1` FOREIGN KEY (`TipoUsuarioID`) REFERENCES `tipousuario` (`TipoUsuarioID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
